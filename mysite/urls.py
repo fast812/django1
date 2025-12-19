@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog import views
-
+from django.urls import path, include
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
 # ]
 
 urlpatterns = [
     path('', views.post_list), # 주소 없이 들어오면 post_list를 보여줘
+    path("", include("blog.urls")),
 ]

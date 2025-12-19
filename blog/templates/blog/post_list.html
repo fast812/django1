@@ -1,9 +1,20 @@
-<h1>나의 멋진 블로그</h1>
+<h1>내 블로그 (Django)</h1>
+
+<h3>Django 특징</h3>
+<ul>
+  {% for f in features %}
+    <li>{{ f }}</li>
+  {% endfor %}
+</ul>
+
+<p><a href="{% url 'post_new' %}">+ 새 글 쓰기</a></p>
+<hr>
+
 {% for post in posts %}
-  <div class="post">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.created_at }}</p>
-    <p>{{ post.content }}</p>
-    <hr>
-  </div>
+  <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+  <p>{{ post.created_at }}</p>
+  <p>{{ post.content|linebreaks }}</p>
+  <hr>
+{% empty %}
+  <p>아직 글이 없어요. “새 글 쓰기”로 첫 글을 작성해봐!</p>
 {% endfor %}
